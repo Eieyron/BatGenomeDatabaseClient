@@ -1,0 +1,21 @@
+name: Docker Image CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: docker login
+        env:
+          DOCKER_USER: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PW }}
+        run: |
+          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - name: docker build project
+        run: |
+          docker build -t "avmagnaye/batgenomedatabaseclient:latest" .
+      - name: docker push
+        run: |
+          docker push avmagnaye/batgenomedatabaseclient:latest
