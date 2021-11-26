@@ -18,7 +18,7 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "react-scripts --openssl-legacy-provider start 0.0.0.0:3000",
+    "start": "react-scripts start 0.0.0.0:3000",
     // "start": "react-scripts start 0.0.0.0:3000",
     "build": "react-scripts build",
     "test": "react-scripts test",
