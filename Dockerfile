@@ -15,4 +15,4 @@ COPY . ./
 EXPOSE 80
 
 # start app
-CMD ["npm", "start", "0.0.0.0:80"]
+CMD ["npm", "start" ]
