@@ -150,7 +150,7 @@ export default class StrainContent extends Component {
     console.log("formdata", fd);
 
     await axios
-      .patch("http://localhost:8000/strain/" + this.props.id + "/", fd, {
+      .patch(axios.defaults.baseURL + "strain/" + this.props.id + "/", fd, {
         headers: {
           Authorization: "Bearer " + localStorage.access,
         },

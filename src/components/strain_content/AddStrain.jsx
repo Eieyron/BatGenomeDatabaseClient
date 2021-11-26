@@ -8,23 +8,8 @@ export class AddStrain extends Component {
     super(props);
 
     this.state = {
-      // strain_name: "test",
-      // type_strain: null,
-      // scientific_name: "test",
-      // medium: "test",
-      // medium_growth: true,
-      // medium_composition: "test",
-      // temperature: 20,
-      // temperature_type: "test",
-      // temperature_range: "test",
-      // reference_list: "{}",
       species_only: true,
-      // species: 2,
     };
-
-    // this.api = axios.create({
-    //   baseURL: `http://localhost:8000/strain/`,
-    // });
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.submit = this.submit.bind(this);

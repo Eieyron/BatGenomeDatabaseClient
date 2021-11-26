@@ -20,10 +20,6 @@ export class CategoryList extends Component {
       search_type: "id",
       search_term: "",
     };
-    this.api = axios.create({
-      baseURL:
-        "http://localhost:8000/tax/" + this.props.Category.toLowerCase() + "/",
-    });
 
     this.addCategory = this.addCategory.bind(this);
     this.delete = this.delete.bind(this);
@@ -90,8 +86,8 @@ export class CategoryList extends Component {
   }
 
   async delete(id) {
-    await this.api
-      .delete("/" + id + "/")
+    await axios
+      .delete("tax/" + this.props.Category.toLowerCase() + "/" + id + "/")
       .then((response) => {
         alert(
           response.status === 204

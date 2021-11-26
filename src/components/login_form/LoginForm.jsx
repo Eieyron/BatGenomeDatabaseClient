@@ -14,7 +14,7 @@ export class LoginForm extends Component {
     };
 
     this.api = axios.create({
-      baseURL: "http://localhost:8000/user/login/",
+      baseURL: axios.defaults.baseURL + "user/login/",
     });
 
     this.handleInputChange = this.handleInputChange.bind(this);
