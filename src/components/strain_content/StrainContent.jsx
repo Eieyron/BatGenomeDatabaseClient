@@ -16,6 +16,7 @@ export default class StrainContent extends Component {
       },
       isLoaded: false,
       component: "content",
+      section: "name",
     };
 
     this.toEdit = {
@@ -24,9 +25,11 @@ export default class StrainContent extends Component {
 
     this.showContents = this.showContents.bind(this);
     this.editContent = this.editContent.bind(this);
-    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this); 
     this.update = this.update.bind(this);
     this.load_info = this.load_info.bind(this);
+    this.contentHandler = this.contentHandler.bind(this);
+    this.setContentHandler = this.setContentHandler.bind(this);
   }
 
   async load_info() {
@@ -46,80 +49,129 @@ export default class StrainContent extends Component {
     await this.load_info();
   }
 
+  setContentHandler(section_name) {
+    this.setState({
+      section: section_name,
+    });
+  }
+
+  contentHandler() {
+    console.log("contentHAndler");
+    if (this.state.section === "name") {
+      return (
+        <div>
+          <div className="section_title">Name and Taxonomic Classification</div>
+
+          <ul className="section_contents">
+            <li className="information">
+              <b>Scientific Name</b> &emsp;
+              <i>{this.state.content.scientific_name}</i>
+            </li>
+            <li className="information">
+              <b>Domain</b> &emsp;
+              <i>
+                {this.state.content.domain
+                  ? this.state.content.domain.category_name
+                  : null}
+              </i>
+            </li>
+            <li className="information">
+              <b>Phylum</b> &emsp;
+              <i>{this.state.content.phylum.category_name}</i>
+            </li>
+            <li className="information">
+              <b>Class</b> &emsp;
+              <i>{this.state.content.class_name.category_name}</i>
+            </li>
+            <li className="information">
+              <b>Order</b> &emsp;<i>{this.state.content.order.category_name}</i>
+            </li>
+            <li className="information">
+              <b>Family</b> &emsp;
+              <i>{this.state.content.family.category_name}</i>
+            </li>
+            <li className="information">
+              <b>Genus</b> &emsp;<i>{this.state.content.genus.category_name}</i>
+            </li>
+            <li className="information">
+              <b>Species</b> &emsp;
+              <i>{this.state.content.species.category_name}</i>
+            </li>
+          </ul>
+        </div>
+      );
+    } else if (this.state.section === "culture") {
+      return (
+        <div>
+          <div className="section_title">Culture and Growth Conditions</div>
+
+          <ul className="section_contents">
+            <li className="information">
+              <b>Medium</b> &emsp;<i>{this.state.content.medium}</i>
+            </li>
+            <li className="information">
+              <b>Medium Composition</b> &emsp;
+              <i>{this.state.content.medium_composition}</i>
+            </li>
+            <li className="information">
+              <b>Medium Growth</b> &emsp;
+              <i>{this.state.content.medium_growth}</i>
+            </li>
+            <li className="information">
+              <b>Temperature</b> &emsp;<i>{this.state.content.temperature}</i>
+            </li>
+            <li className="information">
+              <b>Temperature Range</b> &emsp;
+              <i>{this.state.content.temperature_range}</i>
+            </li>
+            <li className="information">
+              <b>Temperature Type</b> &emsp;
+              <i>{this.state.content.temperature_type}</i>
+            </li>
+          </ul>
+        </div>
+      );
+    } else if (this.state.section === "sequence") {
+      return (
+        <div>
+          <div className="section_title">Sequence Information</div>
+
+          <ul className="section_contents">
+            <button>
+              <a href={this.state.content.type_strain}>Get Fasta</a>
+            </button>
+          </ul>
+        </div>
+      );
+    }
+  }
+
   showContents() {
     return (
-      <div>
-        <div className="section">Name and Taxonomic Classification</div>
-
-        <ul className="section_contents">
-          <li className="information">
-            <b>Scientific Name</b> &emsp;
-            <i>{this.state.content.scientific_name}</i>
-          </li>
-          <li className="information">
-            <b>Domain</b> &emsp;
-            <i>
-              {this.state.content.domain
-                ? this.state.content.domain.category_name
-                : null}
-            </i>
-          </li>
-          <li className="information">
-            <b>Phylum</b> &emsp;<i>{this.state.content.phylum.category_name}</i>
-          </li>
-          <li className="information">
-            <b>Class</b> &emsp;
-            <i>{this.state.content.class_name.category_name}</i>
-          </li>
-          <li className="information">
-            <b>Order</b> &emsp;<i>{this.state.content.order.category_name}</i>
-          </li>
-          <li className="information">
-            <b>Family</b> &emsp;<i>{this.state.content.family.category_name}</i>
-          </li>
-          <li className="information">
-            <b>Genus</b> &emsp;<i>{this.state.content.genus.category_name}</i>
-          </li>
-          <li className="information">
-            <b>Species</b> &emsp;
-            <i>{this.state.content.species.category_name}</i>
-          </li>
-        </ul>
-
-        <div className="section">Culture and Growth Conditions</div>
-
-        <ul className="section_contents">
-          <li className="information">
-            <b>Medium</b> &emsp;<i>{this.state.content.medium}</i>
-          </li>
-          <li className="information">
-            <b>Medium Composition</b> &emsp;
-            <i>{this.state.content.medium_composition}</i>
-          </li>
-          <li className="information">
-            <b>Medium Growth</b> &emsp;
-            <i>{this.state.content.medium_growth}</i>
-          </li>
-          <li className="information">
-            <b>Temperature</b> &emsp;<i>{this.state.content.temperature}</i>
-          </li>
-          <li className="information">
-            <b>Temperature Range</b> &emsp;
-            <i>{this.state.content.temperature_range}</i>
-          </li>
-          <li className="information">
-            <b>Temperature Type</b> &emsp;
-            <i>{this.state.content.temperature_type}</i>
-          </li>
-        </ul>
-
-        <div className="section">Sequence Information</div>
-
-        <ul className="section_contents">
-          <button>
-            <a href={this.state.content.type_strain}>Get Fasta</a>
-          </button>
-        </ul>
+      <div className="section_container">
+        <div className="section_handler">
+          <ul className="section_handler_list">
+            <li
+              className="section_handler_item"
+              onClick={() => this.setContentHandler("name")}
+            >
+              Name and Taxonomic Classification
+            </li>
+            <li
+              className="section_handler_item"
+              onClick={() => this.setContentHandler("culture")}
+            >
+              Culture and Growth Conditions
+            </li>
+            <li
+              className="section_handler_item"
+              onClick={() => this.setContentHandler("sequence")}
+            >
+              Sequence Information
+            </li>
+          </ul>
+        </div>
+        <div className="section">{this.contentHandler()}</div>
       </div>
     );
   }

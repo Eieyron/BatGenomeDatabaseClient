@@ -63,8 +63,6 @@ export default class CategoryContent extends Component {
           })
           .map((category, category_id) => {
             if (category[0] === "Parent") {
-              // console.log(String(category[1]).split("."));
-
               let cat_split = category[1].split(".");
 
               return (
